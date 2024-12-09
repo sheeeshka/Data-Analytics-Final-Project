@@ -236,7 +236,7 @@ const handleRemoveDuplicates = () => {
               },
             }}
           >
-            {file ? file.name : "Drag 'n' Drop or Click to Upload"}
+            {file ? file.name : "Click to Upload"}
             
             <input 
               type="file" 
