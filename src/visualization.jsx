@@ -141,10 +141,11 @@ export default function VisualizationPage() {
                   )                                                                     // Filter out empty values
                   .map((result) => result[rangeX]);                                     // Map to extract the rangeX values
 
-                const labelData = [];
+                const labelData = dataValue.map((item, index) => [item[rangeY]]).filter( String );  // assign values (string) of rangeY (column) as label
                 for (let i = 0; i < selectedData.length; i++) {
-                  labelData.push(i);
+                  //labelData.push(i);
                 }
+                console.log(dataValue.map((item, index) => [item[rangeY]]).filter( String ));
                 setChartData((prev) => ({
                   labels: labelData,                                                   // Example of updating labels
                   datasets: [
@@ -212,9 +213,9 @@ export default function VisualizationPage() {
         )                                                                              // Filter out empty values
         .map((result) => result[rangeX]);                                               // Map to extract the rangeX values
   
-      const labelData = [];
+      const labelData = dataValue.map((item, index) => [item[rangeY]]).filter( String );  // assign values (string) of rangeY (column) as label
       for (let i = 0; i < selectedData.length; i++) {
-        labelData.push(i);
+        //labelData.push(i);
       }
   
       setChartData((prev) => ({
