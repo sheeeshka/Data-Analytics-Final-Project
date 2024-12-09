@@ -375,7 +375,6 @@ const handleRemoveDuplicates = () => {
   
                     <TextField
                       select
-                      label="Data Range"
                       value={selectedRangeX}
                       onChange={(e) => setSelectedRangeX(e.target.value)}
                       fullWidth
@@ -393,14 +392,13 @@ const handleRemoveDuplicates = () => {
 
                     <TextField
                       select
-                      label="Data Range"
                       value={selectedRangeY}
                       onChange={(e) => setSelectedRangeY(e.target.value)}
                       fullWidth
                       SelectProps={{ native: true }}
                       sx={{ marginBottom: 2 }}
                     >
-                      <option value="">Select Range</option>
+                      <option value="">Select Range(Label)</option>
                         <option value="All Columns">All Columns</option> {/* Add the additional option here */}
                         {columnArray.map((header) => (
                           <option key={header} value={header}>

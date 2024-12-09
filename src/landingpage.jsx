@@ -61,7 +61,6 @@ const LandingPage = () => {
           alignItems: "flex-start",
           gap: 3,
           width: "100%",
-          maxWidth: "1400px",
         }}
       >
         {/* Description and Buttons */}
@@ -126,6 +125,7 @@ const LandingPage = () => {
             </Button>
             <Button
               variant="outlined"
+              disabled
               onClick={() => navigate("/visualization")}
               sx={{
                 borderColor: "#FFB74D", 
