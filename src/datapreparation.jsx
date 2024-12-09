@@ -30,6 +30,7 @@ const DataPreparationPage = () => {
   const [selectedVisualization, setSelectedVisualization] = useState("");
   const [file, setFile] = useState(null);
   const [selectedRangeX, setSelectedRangeX] = useState("");
+  const [selectedRangeY, setSelectedRangeY] = useState("");
   const [data, setData] = useState();
   const [columnArray, setColumn] = useState([""]);
   const [values, setValues] = useState([]);
@@ -109,6 +110,7 @@ const handleRemoveDuplicates = () => {
       state: {
         visualizationType: selectedVisualization,
         rangeX: selectedRangeX,
+        rangeY: selectedRangeY,
         columns: columnArray,
         dataValue: data,
       },
@@ -376,6 +378,24 @@ const handleRemoveDuplicates = () => {
                       label="Data Range"
                       value={selectedRangeX}
                       onChange={(e) => setSelectedRangeX(e.target.value)}
+                      fullWidth
+                      SelectProps={{ native: true }}
+                      sx={{ marginBottom: 2 }}
+                    >
+                      <option value="">Select Range</option>
+                        <option value="All Columns">All Columns</option> {/* Add the additional option here */}
+                        {columnArray.map((header) => (
+                          <option key={header} value={header}>
+                            {header}
+                          </option>
+                        ))}
+                    </TextField>
+
+                    <TextField
+                      select
+                      label="Data Range"
+                      value={selectedRangeY}
+                      onChange={(e) => setSelectedRangeY(e.target.value)}
                       fullWidth
                       SelectProps={{ native: true }}
                       sx={{ marginBottom: 2 }}
