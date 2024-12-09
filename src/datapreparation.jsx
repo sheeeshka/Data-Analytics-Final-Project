@@ -109,7 +109,6 @@ const handleRemoveDuplicates = () => {
       state: {
         visualizationType: selectedVisualization,
         rangeX: selectedRangeX,
-        rangeY: selectedRangeY,
         columns: columnArray,
         dataValue: data,
       },
@@ -252,6 +251,7 @@ const handleRemoveDuplicates = () => {
             <Box
               sx={{
                 maxHeight: "200px",
+                maxWidth: "500px",
                 overflow: "auto",
                 border: "1px solid #CCC",
                 borderRadius: "8px",

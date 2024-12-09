@@ -149,7 +149,7 @@ export default function VisualizationPage() {
                   labels: labelData,                                                   // Example of updating labels
                   datasets: [
                     {
-                      label: `${rangeX} IYES Bar Graph`,
+                      label: `${rangeX} Bar Graph`,
                       data: selectedData,                                             // Example data
                       backgroundColor: "rgba(75, 192, 192, 0.2)",
                       borderColor: "rgba(75, 192, 192, 1)",
