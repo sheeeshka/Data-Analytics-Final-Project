@@ -275,7 +275,7 @@ const removeRowsWithEmptyValues = (data) => {
             <Box
               sx={{
                 maxHeight: "200px",
-                maxWidth: "500px",
+                maxWidth: "550px",
                 overflow: "auto",
                 border: "1px solid #CCC",
                 borderRadius: "8px",
