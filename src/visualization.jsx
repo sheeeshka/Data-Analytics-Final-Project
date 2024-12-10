@@ -520,7 +520,7 @@ export default function VisualizationPage() {
           <Box
             id="chart"
             sx={{
-              height: "300px",
+              height: "500px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
