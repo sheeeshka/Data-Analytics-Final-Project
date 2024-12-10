@@ -72,36 +72,49 @@ const handleRemoveDuplicates = () => {
     return;
   }
 
+  let cleanedData = [...data];
 
-  const normalizedData = data.map((row) =>
-    Object.fromEntries(
-      Object.entries(row).map(([key, value]) => [
-        key,
-        value ? value.trim().replace(/\s+/g, " ") : "", 
-      ])
-    )
-  );
+  // 1. Handle Missing Values: Replace empty or null values with a default value (e.g., "N/A")
+  cleanedData = handleMissingValues(cleanedData);
 
+  // 2. Remove Rows with Empty Values: Filter out rows that have any empty or null value in any column
+  cleanedData = removeRowsWithEmptyValues(cleanedData);
+
+  // 4. Remove Duplicates: Remove duplicate rows based on the entire row (JSON.stringify approach)
   const uniqueData = Array.from(
     new Map(
-      normalizedData.map((row) => [JSON.stringify(row), row]) 
+      cleanedData.map((row) => [JSON.stringify(row), row]) 
     ).values()
   );
 
-  const cleanedData = uniqueData.map((row) => row);
+  // Extract columns and values from the cleaned data
+  const columnArray = Object.keys(uniqueData[0] || {});
+  const valuesArray = uniqueData.map((d) => Object.values(d));
 
-  const filteredData = cleanedData;
-
-  const columnArray = Object.keys(filteredData[0] || {});
-  const valuesArray = filteredData.map((d) => Object.values(d));
-
-
-  setData(filteredData);
+  // Update state with cleaned data, columns, and values
+  setData(uniqueData);
   setColumn(columnArray);
   setValues(valuesArray);
 };
 
+// 1. Handling Missing Values: Replace empty or null values with a default value (e.g., "N/A")
+const handleMissingValues = (data) => {
+  return data.map((row) =>
+    Object.fromEntries(
+      Object.entries(row).map(([key, value]) => [
+        key,
+        value ? value.trim().replace(/\s+/g, " ") : "N/A", // Replace missing values with "N/A" or any default value
+      ])
+    )
+  );
+};
 
+// 2. Removing Rows with Empty Values
+const removeRowsWithEmptyValues = (data) => {
+  return data.filter((row) =>
+    Object.values(row).every((value) => value && value.trim() !== "")
+  );
+};
 
 
 
@@ -286,19 +299,21 @@ const handleRemoveDuplicates = () => {
           )}
           {file && (
             <Button
-  
-              variant="contained"
-              onClick={handleRemoveDuplicates}
-              sx={{
-                backgroundColor: "#FFB74D",
-                color: "#FFFFFF",
-                fontWeight: "700",
-                width: "20%",
-                "&:hover": { backgroundColor: "#FFA726" },
-              }}
-            >
-              Remove Duplicates
-            </Button>
+            variant="contained"
+            onClick={handleRemoveDuplicates}
+            sx={{
+              backgroundColor: "#FFB74D",
+              color: "#FFFFFF",
+              fontWeight: "700",
+              width: "200px", // Set width to a specific value to keep it in one line
+              height: "45px", // Adjust height for a more rounded appearance
+              borderRadius: "25px", // Oval shape
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Adding shadow effect
+              "&:hover": { backgroundColor: "#FFA726" },
+            }}
+          >
+            Clean Data
+          </Button>
           )}
         </Box>
 
@@ -422,7 +437,8 @@ const handleRemoveDuplicates = () => {
               color: "#FFFFFF",
               fontWeight: "700",
               fontSize: "1rem",
-              "&:hover": { backgroundColor: "#FFF3E0" },
+              "&:hover": { backgroundColor: "#FFF3E0",color: "#FFB74D" }
+              ,
             }}
           >
             Unleash Data
