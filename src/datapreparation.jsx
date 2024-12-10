@@ -80,7 +80,6 @@ const handleRemoveDuplicates = () => {
   // 2. Remove Rows with Empty Values: Filter out rows that have any empty or null value in any column
   cleanedData = removeRowsWithEmptyValues(cleanedData);
 
-
   // 4. Remove Duplicates: Remove duplicate rows based on the entire row (JSON.stringify approach)
   const uniqueData = Array.from(
     new Map(
@@ -102,10 +101,10 @@ const handleRemoveDuplicates = () => {
 const handleMissingValues = (data) => {
   return data.map((row) =>
     Object.fromEntries(
-      Object.entries(row).map(([key, value]) => [
+      columnArray.map((key) => [
         key,
-        value ? value.trim().replace(/\s+/g, " ") : "N/A", // Replace missing values with "N/A" or any default value
-      ])
+        row[key] ? row[key].trim().replace(/\s+/g, " ") : "", // removes the leading spaces, and limits spaces between words into " "
+      ])                                                      // (cont.) or replace missing values with "" or any default value
     )
   );
 };
@@ -116,8 +115,6 @@ const removeRowsWithEmptyValues = (data) => {
     Object.values(row).every((value) => value && value.trim() !== "")
   );
 };
-
-
 
   const handleUnleashClick = () => {
     navigate("/visualization", {
