@@ -80,6 +80,7 @@ const handleRemoveDuplicates = () => {
   // 2. Remove Rows with Empty Values: Filter out rows that have any empty or null value in any column
   cleanedData = removeRowsWithEmptyValues(cleanedData);
 
+
   // 4. Remove Duplicates: Remove duplicate rows based on the entire row (JSON.stringify approach)
   const uniqueData = Array.from(
     new Map(
@@ -182,16 +183,27 @@ const removeRowsWithEmptyValues = (data) => {
           </Typography>
         </Box>
         <Button
-          variant="outlined"
-          sx={{
-            color: "#FFB74D",
-            borderColor: "#FFB74D",
-            fontWeight: "600",
-            textTransform: "none",
-            padding: "8px 24px",
-            borderRadius: "20px",
-            "&:hover": { backgroundColor: "#FFF3E0" },
-          }}
+            variant="outlined"
+            sx={{
+              color: "#FFB74D",
+              borderColor: "#FFB74D",
+              fontWeight: "600",
+              textTransform: "none",
+              padding: { xs: "6px 16px", sm: "8px 24px" }, // Responsive padding
+              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              borderRadius: "20px",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "auto", // Makes text and box flexible
+              maxWidth: "100%", // Prevents overflow
+              "&:hover": {
+                backgroundColor: "#FFF3E0",
+                borderColor: "#FF8C00", // Slightly different border color on hover
+                color: "#FF8C00", // Change text color on hover
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Add hover effect
+              },
+            }}
           onClick={() => navigate("/landingpage")}
         >
           Back to Landing Page

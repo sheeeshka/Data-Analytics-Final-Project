@@ -474,13 +474,24 @@ export default function VisualizationPage() {
             borderColor: "#FFB74D",
             fontWeight: "600",
             textTransform: "none",
-            padding: "8px 24px",
+            padding: { xs: "6px 16px", sm: "8px 24px" }, // Responsive padding
+            fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
             borderRadius: "20px",
-            "&:hover": { backgroundColor: "#FFF3E0" },
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "auto", // Makes text and box flexible
+            maxWidth: "100%", // Prevents overflow
+            "&:hover": {
+              backgroundColor: "#FFF3E0",
+              borderColor: "#FF8C00", // Slightly different border color on hover
+              color: "#FF8C00", // Change text color on hover
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Add hover effect
+            },
           }}
           onClick={() => navigate("/datapreparation")}
-        >
-          Back to Data Preparation
+          >
+            Back to Data Preparation
         </Button>
       </Box>
 
