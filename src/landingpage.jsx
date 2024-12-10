@@ -10,12 +10,12 @@ const LandingPage = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#FFF3E0", 
+        backgroundColor: "#FFF3E0",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
+        alignItems: "center", // Centers content horizontally
+        justifyContent: "center", // Centers content vertically
         padding: 3,
         boxSizing: "border-box",
         fontFamily: "Poppins, sans-serif",
@@ -25,11 +25,11 @@ const LandingPage = () => {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
+          alignItems: "left",
+          justifyContent: "left",
           gap: 1.5,
           marginBottom: 2,
-          width: "100%",
+          width: "80%",
         }}
       >
         <Box
@@ -58,25 +58,25 @@ const LandingPage = () => {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: "flex-start",
+          alignItems: "center",
+          justifyContent: "center",
           gap: 3,
-          width: "100%",
+          width: "80%",
         }}
       >
         {/* Description and Buttons */}
         <Box
           sx={{
             textAlign: "left",
-            width: { xs: "100%", md: "80%" },
+            maxWidth: "800px",
           }}
         >
-          {/* Title */}
           <Typography
             variant="h1"
             sx={{
               fontWeight: "800",
               fontSize: { xs: "3rem", md: "4rem" },
-              color: "#4E342E", 
+              color: "#4E342E",
               lineHeight: "1.2",
               marginBottom: 3,
               fontFamily: "Poppins, sans-serif",
@@ -85,14 +85,13 @@ const LandingPage = () => {
             Unleash the Power of Your Data
           </Typography>
 
-          {/* Description */}
           <Typography
             variant="body1"
             sx={{
               fontSize: "1.2rem",
-              color: "#4E342E", 
+              color: "#4E342E",
               lineHeight: "1.8",
-              width: "90%",
+              width: "100%",
               marginBottom: 3,
               fontFamily: "Poppins, sans-serif",
             }}
@@ -106,19 +105,18 @@ const LandingPage = () => {
             <strong>FetchData — Fetch the answers. Fetch success.</strong>
           </Typography>
 
-          {/* Navigation Buttons */}
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
             <Button
               variant="contained"
               onClick={() => navigate("/datapreparation")}
               sx={{
-                backgroundColor: "#FFB74D", 
-                color: "#4E342E", 
+                backgroundColor: "#FFB74D",
+                color: "#4E342E",
                 fontWeight: "700",
                 textTransform: "none",
                 padding: "12px 32px",
                 borderRadius: "25px",
-                "&:hover": { backgroundColor: "#FFA726" }, 
+                "&:hover": { backgroundColor: "#FFA726" },
               }}
             >
               Start with Data Preparation
@@ -128,15 +126,15 @@ const LandingPage = () => {
               disabled
               onClick={() => navigate("/visualization")}
               sx={{
-                borderColor: "#FFB74D", 
+                borderColor: "#FFB74D",
                 color: "#FFB74D",
                 fontWeight: "700",
                 textTransform: "none",
                 padding: "12px 32px",
                 borderRadius: "25px",
                 "&:hover": {
-                  backgroundColor: "#FFF8E1", 
-                  borderColor: "#FFA726", 
+                  backgroundColor: "#FFF8E1",
+                  borderColor: "#FFA726",
                 },
               }}
             >
@@ -154,7 +152,6 @@ const LandingPage = () => {
             width: { xs: "100%", md: "45%" },
             maxWidth: "600px",
             height: "auto",
-            marginTop: -15,
           }}
         />
       </Box>
