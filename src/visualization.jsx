@@ -605,7 +605,7 @@ export default function VisualizationPage() {
               onChange={(e) => setFindings(e.target.value)}
               fullWidth
               multiline
-              rows={4}
+              rows={10}
               variant="outlined"
               sx={{
                 backgroundColor: "#FFFFFF",
