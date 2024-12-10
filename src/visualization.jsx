@@ -115,7 +115,7 @@ export default function VisualizationPage() {
         
                                                                                       // Log final selectedData before updating the chart
  
-        
+          console.log(selectedData);
           setChartData((prev) => ({
             labels: columns,                                                            // Labels for the columns
             datasets: [
@@ -293,18 +293,15 @@ export default function VisualizationPage() {
                                                                                       // Coerce value to a number if it’s a string
       value = Number(value);                                                           // Convert to number (will be NaN if invalid)
 
-                                                                                      // Check if the value is a valid number
-      if (!isNaN(value)) {
+      if (!isNaN(value)) {                                                            // Check if the value is a valid number
         return acc + value;
       }
       
 
       return acc;                                                                       // Ignore non-numeric values
-    }, 0);                                                                        // Initial value of accumulator is 0
+    }, 0);                                                                         // Initial value of accumulator is 0
     
-    
-                                                                                        // Push the accumulated sum for the column to selectedDataPolar
-    selectedDataPolar.push(polarSingleData);
+    selectedDataPolar.push(polarSingleData);                                        // Push the accumulated sum for the column to selectedDataPolar
   }
 
  
