@@ -141,9 +141,13 @@ export default function VisualizationPage() {
                   )                                                                     // Filter out empty values
                   .map((result) => result[rangeX]);                                     // Map to extract the rangeX values
 
-                const labelData = dataValue.map((item, index) => [item[rangeY]]).filter( String );  // assign values (string) of rangeY (column) as label
-                for (let i = 0; i < selectedData.length; i++) {
-                  //labelData.push(i);
+                const labelData = [];                                                             // assign values (string) of rangeY (column) as label
+                if(rangeY === "All Columns" || rangeY === "") {                                   // assign number/index as a label
+                  for (let i = 0; i < selectedData.length; i++) {
+                    labelData.push(i);
+                  }
+                } else {
+                  dataValue.map((item, index) => labelData.push([item[rangeY]])).filter( String ); 
                 }
                 console.log(dataValue.map((item, index) => [item[rangeY]]).filter( String ));
                 setChartData((prev) => ({
@@ -213,10 +217,15 @@ export default function VisualizationPage() {
         )                                                                              // Filter out empty values
         .map((result) => result[rangeX]);                                               // Map to extract the rangeX values
   
-      const labelData = dataValue.map((item, index) => [item[rangeY]]).filter( String );  // assign values (string) of rangeY (column) as label
-      for (let i = 0; i < selectedData.length; i++) {
-        //labelData.push(i);
+      const labelData = [];                                                             // assign values (string) of rangeY (column) as label
+      if(rangeY === "All Columns" || rangeY === "") {                                   // assign number/index as a label
+        for (let i = 0; i < selectedData.length; i++) {
+          labelData.push(i);
+        }
+      } else {
+        dataValue.map((item, index) => labelData.push([item[rangeY]])).filter( String ); 
       }
+      
   
       setChartData((prev) => ({
         labels: labelData,                                                            // Labels for x-axis (row indices or generated labels)
@@ -237,30 +246,25 @@ export default function VisualizationPage() {
 
       case "Radar Chart":
   const selectedDataRadar = [];
-  
-                                                                                         // Loop through each column
-  for (let i = 0; i < columns.length; i++) {
+  for (let i = 0; i < columns.length; i++) {                                             // Loop through each column
     const columnType = columns[i];                                                       // Get the current column (key)
-
-                                                                                        // Accumulate the sum for the current column (key)
-    const radarSingleData = dataValue.reduce((acc, result) => {
+                                                
+    const radarSingleData = dataValue.reduce((acc, result) => {                         // Accumulate the sum for the current column (key)
       const value = result[columnType];                                                 // Access the value of result using the columnType key
       
-
-                                                                                        // Ensure the value is a number before adding to the accumulator
-      if (typeof value === 'number') {
+      if (typeof value === 'number') {                                                  // Ensure the value is a number before adding to the accumulator
         return acc + value;
-      } else if (!isNaN(Number(value))) {
-                                                                                        // If the value is a string that represents a number, convert it
+      } else if (!isNaN(Number(value))) {                                               // If the value is a string that represents a number, convert it
         return acc + Number(value);
       }
 
       return acc;                                                                       // Ignore non-numeric values
     }, 0);                                                                              // Initial value of accumulator is 0
     
-                                                                                        // Push the accumulated sum for the column to selectedDataRadar
-    selectedDataRadar.push(radarSingleData);
+                                                                                        
+    selectedDataRadar.push(radarSingleData);                                            // Push the accumulated sum for the column to selectedDataRadar
   }
+  console.log(selectedDataRadar);
   setChartData((prev) => ({
     labels: columns,                                                                    // Labels for the Radar chart
     datasets: [
