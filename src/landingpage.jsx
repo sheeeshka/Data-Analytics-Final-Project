@@ -105,7 +105,7 @@ const LandingPage = () => {
             <strong>FetchData — Fetch the answers. Fetch success.</strong>
           </Typography>
 
-          <Box sx={{ display: "flex", gap: 2, justifyContent: "center" }}>
+          <Box sx={{ display: "flex", gap: 2, justifyContent: "left" }}>
             <Button
               variant="contained"
               onClick={() => navigate("/datapreparation")}
@@ -121,25 +121,7 @@ const LandingPage = () => {
             >
               Start with Data Preparation
             </Button>
-            <Button
-              variant="outlined"
-              disabled
-              onClick={() => navigate("/visualization")}
-              sx={{
-                borderColor: "#FFB74D",
-                color: "#FFB74D",
-                fontWeight: "700",
-                textTransform: "none",
-                padding: "12px 32px",
-                borderRadius: "25px",
-                "&:hover": {
-                  backgroundColor: "#FFF8E1",
-                  borderColor: "#FFA726",
-                },
-              }}
-            >
-              Go to Visualization
-            </Button>
+
           </Box>
         </Box>
 
