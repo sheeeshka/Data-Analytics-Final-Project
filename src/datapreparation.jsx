@@ -187,7 +187,7 @@ const removeRowsWithEmptyValues = (data) => {
               fontWeight: "600",
               textTransform: "none",
               padding: { xs: "6px 16px", sm: "8px 24px" }, // Responsive padding
-              fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+              fontSize: { xs: "13px", sm: "13px" }, // Responsive font size
               borderRadius: "20px",
               display: "inline-flex",
               alignItems: "center",
