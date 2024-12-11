@@ -6,6 +6,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
   Chart as ChartJS,
   BarElement,
@@ -38,7 +39,8 @@ ChartJS.register(
   Legend,
   CategoryScale,
   LinearScale,
-  Title
+  Title,
+  ChartDataLabels
 );
 
 ChartJS.register(
@@ -78,6 +80,8 @@ export default function VisualizationPage() {
     labels: [],
     datasets: [],
   });
+
+  const [chartOptions, setChartOptions] = useState({});
 
   useEffect(() => {
     handleGenerateGraph();
@@ -322,6 +326,21 @@ export default function VisualizationPage() {
       },
     ],
   }));
+  
+  setChartOptions({
+      responsive: true,
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+              const datapoints = ctx.chart.data.datasets[0].data
+              const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
+              const percentage = value / total * 100
+              return percentage.toFixed(2) + "%";
+          },
+          color: '#000000',
+        }
+      },
+  });
   break;
 
 
@@ -368,6 +387,20 @@ export default function VisualizationPage() {
         },
       ],
     }));
+    setChartOptions({
+        responsive: true,
+        plugins: {
+          datalabels: {
+            formatter: (value, ctx) => {
+                const datapoints = ctx.chart.data.datasets[0].data
+                const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
+                const percentage = value / total * 100
+                return value + '\n' + percentage.toFixed(2) + "%";
+            },
+            color: '#000000',
+          }
+        },
+    });
     break;
   
       default:
@@ -544,7 +577,7 @@ export default function VisualizationPage() {
                 "Line Graph": <Line data={chartData} />,
                 "Radar Chart": <Radar data={chartData} />,
                 "Polar Area Chart": <PolarArea data={chartData} />,
-                "Pie Chart": <Pie data={chartData} />,
+                "Pie Chart": <Pie data={chartData} options={chartOptions}/>,
               }[visualizationType]
             ) : (
               <Typography>No chart data available!</Typography>
